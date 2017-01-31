@@ -40,22 +40,9 @@ class Bd {
 		// TABLENAME 
 		$query .= " FROM $tableName ";
 
-
 		// WHERE
-		$length = count($conditions);
-		if(isset($conditions) && $length > 0) {
-			$query .= "WHERE ";
-			foreach ($conditions as $key => $value) {
-				
-				$query .= $key . "=" . $value . " ";
-				
-				if(--$length) { // if is not last iteration
-					$query .= "AND ";
-				}
-				
-			}
-			
-		}
+		$query .=  $this->whereQuery($conditions);
+		
 		// ORDERBY
 		if(isset($orderBy)) {
 			$query .= "ORDER BY $orderBy ";
@@ -98,17 +85,36 @@ class Bd {
 		$query = "UPDATE $tableName SET ";
 
 		// UPDATE
+		$length = count($changes);
 		foreach ($changes as $key => $value) {
 			$query .= "$key=" . '"' . "$value" . '" ';
 
 			if(--$length) { // if is not last iteration
-				$query .= "AND ";
+				$query .= ", ";
 			}
 		}
 
 		// WHERE
+		$query .= $this->whereQuery($conditions);
+
+		$this->execute($query);
+	}
+
+	public function delete($tableName, $conditions) {
+		$query = "DELETE FROM $tableName "
+			. $this->whereQuery($conditions);
+		$this->execute($query);
+	}
+
+
+
+	private function execute($query) {
+		return $this->db->query($query);
+	}
+
+	private function whereQuery($conditions) {
 		$length = count($conditions);
-		$query .= "WHERE ";
+		$query = "WHERE ";
 		foreach ($conditions as $key => $value) {
 			$query .= "$key=" . '"' . "$value" . '" ';
 
@@ -116,17 +122,9 @@ class Bd {
 				$query .= "AND ";
 			}
 		}
-
-		$this->execute($query);
+		return $query;
 	}
 
-	public function delete() {
-
-	}
-
-	private function execute($query) {
-		return $this->db->query($query);
-	}
 }
 
 ?>
