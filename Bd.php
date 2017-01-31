@@ -17,18 +17,24 @@ class Bd {
 	}
 	***/
 
-	public function select($tableName, $rows = array("*"), $conditions = NULL, $limit = 10, $orderBy = NULL) {
+
+	public function select($tableName, $rows = NULL, $conditions = NULL, $orderBy = NULL, $limit = NULL) {
+
 		$query = "SELECT ";
 
 		// ROWS SELECTION
-		$length = count($rows);
-		foreach ($rows as $row) {
-			$query .= $row;
+		if(isset($rows)) {
+			$length = count($rows);
+			foreach ($rows as $row) {
+				$query .= $row;
 
 				if(--$length) { // if is not last iteration
 					$query .= ",";
 				}
-							
+
+			}
+		} else {
+			$query .= "* ";
 		}
 
 		// TABLENAME 
@@ -39,9 +45,9 @@ class Bd {
 		$length = count($conditions);
 		if(isset($conditions) && $length > 0) {
 			$query .= "WHERE ";
-			foreach ($conditions as $condition) {
+			foreach ($conditions as $key => $value) {
 				
-				$query .= $condition['0'] . "=" . $condition['1'] . " ";
+				$query .= $key . "=" . $value . " ";
 				
 				if(--$length) { // if is not last iteration
 					$query .= "AND ";
@@ -52,28 +58,49 @@ class Bd {
 		}
 		// ORDERBY
 		if(isset($orderBy)) {
-			$query .= "ORDER BY " . $orderBy . " ";
+			$query .= "ORDER BY $orderBy ";
 		}
 
 		// LIMIT
 		if(isset($limit)) {
-			$query .= "LIMIT " . $limit . " ";
+			$query .= "LIMIT $limit ";
+		} else {
+			$query .= "LIMIT 4";
 		}
 
 		return $this->execute($query);
 	}
 
-	public function insert($tableName) {
-		$stmt = $this->db->query("INSERT $tableName");
-		return $stmt;
+
+	public function insert($tableName, $values) {
+
+		// ROWS SELECTION
+		$length = count($values);
+		$rows = "";
+		$insertedValues = "";
+		foreach ($values as $key => $value) {
+			$rows .= "$key";
+			var_dump(gettype($value));
+			$insertedValues .= (is_string($value)) ? '"'.$value.'"' : "$value" ;
+			if(--$length) { // if is not last iteration
+				$rows .= ",";
+				$insertedValues .= ",";
+			}
+		}
+
+		$query = "INSERT INTO $tableName ($rows) VALUES ($insertedValues)";
+
+		return $this->execute($query);
+
 	}
 
+
 	public function update() {
-		
+
 	}
 
 	public function delete() {
-		
+
 	}
 
 	private function execute($query) {
