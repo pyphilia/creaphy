@@ -90,13 +90,34 @@ class Bd {
 
 		$query = "INSERT INTO $tableName ($rows) VALUES ($insertedValues)";
 
-		return $this->execute($query);
-
+		$this->execute($query);
 	}
 
 
-	public function update() {
+	public function update($tableName, $changes, $conditions) {
+		$query = "UPDATE $tableName SET ";
 
+		// UPDATE
+		foreach ($changes as $key => $value) {
+			$query .= "$key=" . '"' . "$value" . '" ';
+
+			if(--$length) { // if is not last iteration
+				$query .= "AND ";
+			}
+		}
+
+		// WHERE
+		$length = count($conditions);
+		$query .= "WHERE ";
+		foreach ($conditions as $key => $value) {
+			$query .= "$key=" . '"' . "$value" . '" ';
+
+			if(--$length) { // if is not last iteration
+				$query .= "AND ";
+			}
+		}
+
+		$this->execute($query);
 	}
 
 	public function delete() {
