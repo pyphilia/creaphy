@@ -1,8 +1,73 @@
-body {
-  background-image: url(https://www.bkacontent.com/wp-content/uploads/2015/10/desksplash3.jpg);
-  background-size: 100% auto;
-  background-repeat: no-repeat;
-  font-size: 12px; }
+* {
+  margin: 0;
+  padding: 0; }
 
-section#aboutme {
+html, body {
+  font-size: 15px;
+  height: 100%;
+  font-family: arial;
+  font-size: 20px;
+  text-transform: uppercase;
+  /* overflow:hidden; */
+  /* font-family: $primaryFont; */ }
+
+a, a:hover {
+  text-decoration: none; }
+
+.bold {
+  font-weight: 800; }
+
+nav ul li {
+  list-style-type: none; }
+
+div#content {
+  /* width:100%;
+	margin:0;
+	position:absolute;
+	top:100%; */ }
+  div#content section > div {
+    overflow: hidden;
+    padding: 0; }
+  div#content .content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3%;
+    box-sizing: border-box; }
+  div#content .mainContent {
+    padding: 3%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    div#content .mainContent p {
+      line-height: 2em; }
+  div#content .sns i {
+    font-size: 2em;
+    margin: 0 2%; }
+
+section#aboutme div.col {
   background: white; }
+
+section#aboutme span.star {
+  font-size: 1.3em; }
+  section#aboutme span.star.valid {
+    color: green; }
+  section#aboutme span.star.almost {
+    color: grey; }
+
+.imageGridContainer {
+  margin: 0%;
+  width: 106%;
+  position: relative;
+  /* background-size:100%;
+	background-repeat: no-repeat; */ }
+  .imageGridContainer .gridImg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* 
+		filter:grayscale(100%); */ }
+    .imageGridContainer .gridImg:hover {
+      filter: grayscale(0%); }

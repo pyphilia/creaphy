@@ -1,0 +1,15 @@
+@mixin textFormat {
+	font-family: arial;
+	font-size:20px;
+	text-transform:uppercase;
+}
+
+@mixin paddingToContent {
+	padding:3%;
+}
+
+@mixin paddingToContentInverseGrid {
+	margin:3% -6%;
+	margin-left:-3%;
+	width:100% + 3*2%;
+}

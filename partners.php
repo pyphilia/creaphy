@@ -1,4 +1,3 @@
-
 <div class="partenaires">
 	<a href="http://www.igraphiks.co.vu/">
 		<img alt="partenariat logo" class="part" src="http://img15.hostingpics.net/pics/229164button.png" />

@@ -1,12 +1,131 @@
-body {
+@import 'variables';
+@mixin textFormat {
+	font-family: arial;
+	font-size:20px;
+	text-transform:uppercase;
+}
 
-	background-image:url(https://www.bkacontent.com/wp-content/uploads/2015/10/desksplash3.jpg);
-	background-size:100% auto;
-	background-repeat : no-repeat;
-	font-size: 12px;
+@mixin paddingToContent {
+	padding:3%;
+	box-sizing:border-box;
+}
 
+@mixin paddingToContentInverseGrid {
+	margin:0%;
+	width:100% + 6%;
+}
+
+@mixin centerHorizontallyAndVertically {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+
+
+* {
+	margin:0;
+	padding:0;
+}
+
+html,body {
+	font-size: 15px;
+	height:100%;
+	@include textFormat;
+	/* overflow:hidden; */
+	/* font-family: $primaryFont; */
+}
+
+a, a:hover {
+	text-decoration:none;
+}
+
+.bold {
+	font-weight:800;
+}
+
+nav {
+	ul li {
+		list-style-type: none;
+	}
+}
+
+div#content {
+	/* width:100%;
+	margin:0;
+	position:absolute;
+	top:100%; */
+
+	
+	& section > div {
+		//border:1px solid black;
+		overflow: hidden;
+		padding:0;
+	}
+
+	.content {
+		@include centerHorizontallyAndVertically;
+		@include paddingToContent;
+
+		// height set to 50 with js
+	}
+
+	.mainContent {
+		@include paddingToContent;
+		@include centerHorizontallyAndVertically;
+		// height set to 50 with js
+
+		p {
+			line-height: 2em;
+		}
+	}
+
+	.sns i {
+		font-size: 2em;
+		margin:0 2%;
+	}
 }
 
 section#aboutme {
-	background:white;
+
+	div.col, {
+		background:white;
+		
+	}
+
+	span.star {
+		font-size: 1.3em;
+
+		&.valid {
+			color:green;
+		}
+
+		&.almost {
+			color:grey;
+		}
+	}
+
+}
+
+
+// IMAGE GRID
+.imageGridContainer {
+	@include paddingToContentInverseGrid;
+	position: relative;
+	/* background-size:100%;
+	background-repeat: no-repeat; */
+	// height set to 50 with js
+
+	.gridImg {
+		position:absolute;
+		top:0;
+		left:0;
+		width:100%;/* 
+		filter:grayscale(100%); */
+
+		&:hover {
+			filter:grayscale(0%);
+		}
+	}
+
 }

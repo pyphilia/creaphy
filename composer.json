@@ -1,0 +1,6 @@
+{
+	"require": {
+		"j0k3r/php-imgur-api-client": "^2.0.0",
+		"facebook/graph-sdk": "^5.4"
+	}
+}
