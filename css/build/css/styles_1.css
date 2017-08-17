@@ -30,6 +30,38 @@
   src: local("Arizonia"), local("Arizonia-Regular"), url(https://fonts.gstatic.com/s/arizonia/v6/PwrsyFTYH2Wmsvpn0dx4s_esZW2xOQ-xsNqO47m55DA.woff2) format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215; }
 
+/* devanagari */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  src: local("Poppins Light"), local("Poppins-Light"), url(https://fonts.gstatic.com/s/poppins/v3/01M8UnHoM7MaVdT1TD1pbiEAvth_LlrfE80CYdSH47w.woff2) format("woff2");
+  unicode-range: U+02BC, U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200B-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB; }
+
+/* latin-ext */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  src: local("Poppins Light"), local("Poppins-Light"), url(https://fonts.gstatic.com/s/poppins/v3/MEXWGbc1EWORtBwy9fFeUiEAvth_LlrfE80CYdSH47w.woff2) format("woff2");
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF; }
+
+/* latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  src: local("Poppins Light"), local("Poppins-Light"), url(https://fonts.gstatic.com/s/poppins/v3/D2gN9uyZ9Ucx1fJ1Fhb7s_k_vArhqVIZ0nv9q090hN8.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215; }
+
+/* latin */
+@font-face {
+  font-family: 'Questrial';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Questrial"), local("Questrial-Regular"), url(https://fonts.gstatic.com/s/questrial/v6/MYWJ4lYm5dbZ1UBuYox79FtXRa8TVwTICgirnJhmVJw.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215; }
+
 * {
   margin: 0;
   padding: 0; }
@@ -38,7 +70,9 @@ body {
   font-size: 14px;
   background: #000;
   background-image: url("/creaphy/img/background.png");
-  background-attachment: fixed; }
+  background-attachment: fixed;
+  overflow: hidden;
+  line-height: 17px; }
 
 a, a:active, a:hover {
   text-decoration: none !important;
@@ -72,7 +106,7 @@ nav {
         font-size: 1.7em; }
 
 .blank {
-  height: 200px; }
+  height: 140px; }
 
 #sidebar {
   position: absolute;
@@ -92,57 +126,54 @@ section#content {
   width: 100%; }
   section#content .intro, section#content .nextProjects {
     width: 100%; }
-  section#content .project {
+  section#content .project_wrapper {
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    resize: both;
-    width: 100%;
-    margin: 0% 0 6%; }
-  section#content .lightgallery {
-    width: 200px;
-    background: black; }
-    section#content .lightgallery img {
-      display: block;
-      margin: 2px 0;
-      width: 100%;
-      float: right; }
-  section#content .desc {
-    margin: 0 -15px;
+    justify-content: left;
+    align-items: flex-start;
+    /* resize: both; */
+    width: 400%;
+    margin: 0% 0 3% 0; }
+  section#content .lightgallery img {
+    margin: 2px;
+    max-height: 50px;
+    opacity: 0.7; }
+  section#content .project {
+    margin: 0 10px;
     background: white;
     font-size: 1.1em;
     /* border:1px solid green; */
-    width: 30%;
-    padding: 10px 20px;
+    /*width defined in js*/
+    padding: 20px;
     box-sizing: border-box;
-    border-radius: 5px; }
-    section#content .desc h2 {
+    border-radius: 5px;
+    transition: 1s all;
+    -webkit-transition: 1s all; }
+    section#content .project .desc {
+      max-height: 230px;
+      overflow: auto; }
+    section#content .project a, section#content .project p, section#content .project h2, section#content .project .desc, section#content .project img {
+      transition: 1s all;
+      -webkit-transition: 1s all; }
+    section#content .project.blurred {
+      text-shadow: lightgrey 0 0 5px;
+      box-shadow: 0 0 10px white; }
+      section#content .project.blurred a, section#content .project.blurred p, section#content .project.blurred h2, section#content .project.blurred .desc {
+        color: transparent; }
+      section#content .project.blurred img {
+        opacity: 0.1; }
+    section#content .project h2 {
       text-transform: lowercase;
       letter-spacing: -1px; }
-  section#content .circle {
-    height: 70px;
-    width: 70px;
-    border-radius: 50px;
-    background: #1e6e83;
-    z-index: 2;
-    position: relative; }
-  section#content .rect {
-    margin-left: -40px;
-    margin-bottom: -600px;
-    z-index: 1;
-    position: relative;
-    height: 600px;
-    width: 8px;
-    background: #1e6e83; }
 
 #sns {
-  position: fixed;
-  text-align: center;
-  display: none; }
-  #sns a {
+  text-align: center; }
+  #sns span {
     font-size: 4.3em;
-    margin: 0 2%; }
+    margin: 0 1%;
+    color: #1e6e83; }
+  #sns #arrowLeft, #sns #arrowRight {
+    color: black; }

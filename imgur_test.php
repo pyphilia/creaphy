@@ -8,12 +8,52 @@
 $client_id_imgur = "1386c0cf5ad7748";
 
 
-// test
-// $pms = getImagesFromAlbum("sThLO");
-// foreach($pms['data'] as $link) {
-// 	echo '<img style="height:100px;" src="'.$link['link'].'"/>';
-// }
+$pms = getImagesFromAlbum("PJH5A");
 
+$tags = "seo in guk, u-kiss";
+$tags = processTags($tags);
+
+$sorted = sortByTags(array_slice($pms['data'],0,10), $tags);
+
+var_dump($sorted);
+
+
+
+$i = 0;
+
+/*foreach($pms['data'] as $link) {
+	echo '<img style="height:100px;" src="'.$link['link'].'"/>';
+	if($i++ > 10) break;
+}*/
+
+
+// tags is a string containing comma
+function processTags($tags){
+
+	// get array of tags
+	$tags = explode(",",$tags);
+
+	$res = [];
+	foreach ($tags as $tag) {
+		$t = strtolower($tag);
+		$t = preg_replace("/[-\s\,\.\#]/", "", $t);
+		array_push($res, $t);
+	}
+	return $res;
+}
+
+function sortByTags($data, $tags){
+	$res = [];
+	foreach ($data as $key => $value) {
+		foreach ($tags as $tag) {
+			if(strpos($value['description'], $tag) !== false){
+				array_push($res, $value);
+				break;
+			}
+		}
+	}
+	return $res;
+}
 
 
 function getImagesFromAlbum($albumId) {
