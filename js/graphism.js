@@ -1,0 +1,1 @@
+$("#creation_content").css("height", window.innerHeight); 

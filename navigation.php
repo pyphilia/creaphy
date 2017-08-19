@@ -4,10 +4,10 @@
 <!--     <li><a href="">About Me</a></li> -->
 <!--     <li><a href="">Archives</a></li> -->
 	<li>
-		<a href="">home</a>
+		<a href="index.php">home</a>
 	</li>
     <li>
-    	<a href="">Graphism</a>
+    	<a href="graphism.php">Graphism</a>
     	<!-- <span class="sublinks">
     		<a href="">creations</a><br>
     		<a href="">Gimp Tutorials</a><br>
@@ -15,7 +15,7 @@
     	</span> -->
     </li>
     <li>
-        <a href="">
+        <a href="partners.php">
             Partners
         </a>
     </li>

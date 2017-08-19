@@ -1,5 +1,5 @@
 <?php 
-class Bd {
+class Db {
 
 	private $db;
 
@@ -24,7 +24,7 @@ class Bd {
 		$query .=  $this->whereQuery($conditions);
 		$query .= $this->orderByQuery($orderBy);
 		$query .= $this->limitQuery($limit);
-		var_dump($query);
+		/*var_dump($query);*/
 		return $this->execute($query);
 	}
 
@@ -67,6 +67,8 @@ class Bd {
 		// WHERE
 		$query .= $this->whereQuery($conditions);
 
+		/*var_dump($query);*/
+
 		$this->execute($query);
 	}
 
@@ -91,6 +93,8 @@ class Bd {
 		$query .= $this->whereQuery($conditions);
 		$query .= $this->orderByQuery($orderBy);
 		$query .= $this->limitQuery($limit);
+
+		/*var_dump($query);*/
 
 		return $this->execute($query);
 	}
@@ -139,7 +143,7 @@ class Bd {
 					if($innerLength > 1) {
 
 						foreach ($value as $v) {
-						
+
 							$query .= "$key=" . '"' . "$v" . '" ';
 
 							if(--$innerLength) { // if is not last iteration
@@ -149,16 +153,16 @@ class Bd {
 						}
 					}
 					else {
-						$query .= "$key=" . '"' . "$value" . '" ';
+						$query .= (strcmp($value[0],"IS NOT NULL")==0) ? "$key IS NOT NULL " : "$key=" . '"' . "$value[0]" . '" ';
 
-							if(--$length) { // if is not last iteration
-								$query .= "AND ";
-							}
+						if(--$length) { // if is not last iteration
+							$query .= "AND ";
+						}
 					}
 				}
 			}
 		}
-		var_dump($query);
+		/*var_dump($query);*/
 		return $query;
 	}
 

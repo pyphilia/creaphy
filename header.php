@@ -1,1 +1,1 @@
-<h1>Créaphy</h1>
+<h1>Cr<span class="highlight">é</span>aphy</h1>

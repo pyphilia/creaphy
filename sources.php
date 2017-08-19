@@ -1,0 +1,1 @@
+flareon sprite : http://rs596.pbsrc.com/albums/tt46/Arashi_The_Glaceon/HGSS-Overworld-Flareon-Runn.gif~c200

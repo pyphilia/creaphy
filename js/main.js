@@ -9,7 +9,7 @@ $(document).ready(function() {
 	var marginLeft = (window.innerWidth - projectWidth - projectMargin)/2;
 	$(".project").css("width",projectWidth);
 	$(".project_wrapper").css("margin-left",marginLeft);
-	$("#project_content_table").css("marginTop", getCorrespondingHeight() + "px");
+	$("#blank").css("height", getCorrespondingHeight() + "px");
 
 	var MAXSLIDE = data.length + 1; 
 	var widthProjectElement = projectWidth + projectMargin; 
@@ -58,43 +58,9 @@ $(document).ready(function() {
 		$(".project[data-num='"+(currentProject)+"']").removeClass("blurred");
 
 
-		$(".project_wrapper").animate({"marginLeft": (marginLeft) + "px" },500,"swing");
+		$(".project_wrapper").animate({"marginLeft": (marginLeft) + "px" },700);
 	}
 });
-
-
-
-function getCorrespondingWidth() {
-
-	var windowWidth = window.innerWidth;
-	var factor = 1;
-
-	if(windowWidth < 871) {
-		factor = 1/1.1;
-	}
-	else if(windowWidth < 1400) {
-		factor = 1/2;
-	}
-	else {
-		factor = 1/2.4;
-	}
-
-	return window.innerWidth * factor;
-}
-
-function getCorrespondingHeight(){
-	var windowHeight = window.innerHeight;
-	var factor = 1;
-
-	if(windowHeight < 680) {
-		factor = 0;
-	}
-	else {
-		factor = 1/10;
-	}
-
-	return window.innerWidth * factor;
-}
 
 
 function displayProjects(myData){

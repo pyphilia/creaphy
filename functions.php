@@ -8,5 +8,14 @@ function displayGridImages(array $images) {
 	
 }
 
+function isCategory($s){
+	global $CATEGORIES;
+	$cat_names = array_keys($CATEGORIES);
+	if(array_key_exists($s, $CATEGORIES)){
+		return $CATEGORIES[$s];
+	}
+	else false;
+}
+
 
 ?>
