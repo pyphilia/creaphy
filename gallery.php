@@ -59,7 +59,7 @@ if(isset($_GET['search'])) {
 	</select>
 
 	<input class="gallery_send" value="Valider" type="submit"/>
-	<p style="font-style:italic;">Si cela ne s'affiche pas bien, recharger la page !</p>
+	<p style="font-style:italic;">Buggy? Reload!</p>
 
 
 

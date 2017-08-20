@@ -124,6 +124,16 @@ nav {
 	}
 }
 
+footer {
+	font-size:0.7em;
+	text-align: center;
+	position: fixed;
+	left:0;
+	bottom:0;
+	width:100%;
+	background:white;
+}
+
 #project_content_table {}
 
 section#content {
@@ -218,7 +228,9 @@ section#content {
 
 	img {
 		margin:2px;
-		max-height:60px;
+		height:55px;
+		width:55px;
+		object-fit: cover;
 		opacity: 0.7;
 	}
 }
@@ -249,6 +261,11 @@ section#content {
 
 	img {
 		margin:2px;
+	}
+
+	#sources {
+		font-size:0.7em;
+		text-align: left;
 	}
 }
 

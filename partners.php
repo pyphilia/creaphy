@@ -15,6 +15,11 @@
 				<?php include("partners_link.php"); ?>
 			</div>
 			<a href="mailto:pyphilia@gmail.com">Wish a partnership? Contact me!</a>
+
+<!-- 
+			<p id="sources">
+				<?php include("sources.php"); ?>
+			</p> -->
 		</div>
 	</section>
 
@@ -24,6 +29,8 @@
 		$("#blank").css("height", getCorrespondingHeight() + "px");
 		$(".partners_content").css("width",getCorrespondingWidth()+"px");
 	</script>
+
+<?php include("footer.php"); ?>
 
 </body>
 </html>

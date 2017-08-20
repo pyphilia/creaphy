@@ -77,6 +77,15 @@ nav {
       nav ul li span.sublinks a {
         font-size: 1.7em; }
 
+footer {
+  font-size: 0.7em;
+  text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: white; }
+
 section#content {
   background: none;
   justify-content: center;
@@ -148,7 +157,9 @@ section#content {
 
 .lightgallery img {
   margin: 2px;
-  max-height: 60px;
+  height: 55px;
+  width: 55px;
+  object-fit: cover;
   opacity: 0.7; }
 
 #sns {
@@ -172,6 +183,9 @@ section#content {
   text-align: center; }
   .partners_content img {
     margin: 2px; }
+  .partners_content #sources {
+    font-size: 0.7em;
+    text-align: left; }
 
 /*****GRAPHISM*****/
 #graphism {

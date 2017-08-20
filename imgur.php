@@ -1,9 +1,12 @@
+
 <!-- <form action="" enctype="multipart/form-data" method="POST">
 	Choose Image : <input name="img" size="35" type="file"/><br/>
 	<input type="submit" name="submit" value="Upload"/>
 </form> -->
 
 <?php 
+
+require("creationsData.php");
 
 class Imgur {
 
@@ -58,7 +61,7 @@ class Imgur {
 		}
 		return $res;
 	}
-
+/*
 
 	public function getImagesFromAlbum($albumId) {
 		global $client_id_imgur;
@@ -74,6 +77,12 @@ class Imgur {
 		curl_close ($curl);
 		$pms = json_decode($out,true);
 		return $pms;
+	}*/
+
+
+	public function getImagesFromAlbum($albumId) {
+		global $CREATIONS;
+		return $CREATIONS[$albumId];
 	}
 
 
