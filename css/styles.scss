@@ -8,9 +8,17 @@
 @mixin boxContentStyles(){
 	background: $contentBackground;
 	font-size: 1.1em;
-	padding:20px 40px;
 	box-sizing:border-box;
 	border-radius: 5px;
+	padding:20px 40px;
+}
+
+@mixin buttonStyle(){
+	padding:5px 10px;
+	background:$highColor;
+	color: white;
+	text-transform: uppercase;
+	border:none;
 }
 
 $linkColor: black;
@@ -49,6 +57,14 @@ body {
 	background-attachment:fixed;
 	overflow:hidden;
 	line-height:20px;
+
+	height: 100%;
+	min-height: 100%;
+}
+
+html {
+	height: 100%;
+	min-height: 100%;
 }
 
 a, a:active, a:hover {
@@ -70,6 +86,15 @@ h2 {
 	padding:0;
 	text-transform: capitalize;
 	color:$highColor;
+/* 
+	#graph_title {
+	font-family: 'Arizonia';
+		font-weight: bold;
+	} */
+}
+
+input {
+	@include buttonStyle();
 }
 
 nav {
@@ -79,7 +104,7 @@ nav {
 	ul li {
 		list-style:none;
 		display: inline-block;
-		margin: 0 30px;
+		margin: 5px 2%;
 
 		a  {
 			color: $linkColor;
@@ -141,21 +166,20 @@ section#content {
 		background-position: center center;
 		width:100px;
 		height:100px;
+		max-height:15%;
 		margin: 10px 20px 10px 0; 
 		float:left;
 	}
 
 	.desc {
-
 		max-height: 230px;
 		overflow: auto;
-		margin: 7px 0;
+		margin: 2% 0;
 		color: $textColor;
 		text-align: justify;
 	}
 
 	a,p,h2,.desc,img {
-
 
 		@include transition();
 	}
@@ -241,8 +265,8 @@ section#content {
 	#sidebar {
 		display:flex-box;
 		box-sizing:border-box;
-		margin:0 0 5% 0;
-		padding:0 1%;
+		margin:0 0 50px 0;
+		padding:0 2%;
 
 		h1 {
 			font-size:3em;
@@ -266,20 +290,22 @@ section#content {
 		display:flex-box;
 		padding:1%;
 		margin:0;
-		height:100%;
 		background: $contentBackground;
 	}
 
 
-	#sublinks {
+	.sublinks {
 
 		span {
-			margin:0 5px;
-			padding:5px;
-			background:lightgrey;
+			display:inline-block;
+			vertical-align: middle;
+			margin:0.5%;
+			@include buttonStyle();
+
 
 			&:hover {
 				cursor: pointer;
+				opacity: 0.7;
 			}
 		}
 	}
@@ -288,12 +314,51 @@ section#content {
 
 #gallery {
 	img {
-		width:100px;
+		height: 150px;
+		width:150px;
+		object-fit: cover;
+		margin:0.5%;
+		background: $highColor;
+
+		&:hover {
+			opacity:0.7;
+		}
 	}
 
 	.list {
-		height:400px;
+		margin:10px 0;
 		overflow:auto;
+
 	}
+
+}
+
+.chosen-container {
+	width:80% !important;
+}
+
+
+
+@media (max-width: 600px), (max-height: 600px){
+  h1 {
+
+	font-size: 4em;
+  }
+
+  .partners_content, .project {
+  	padding: 10px 2%;
+  }
+
+  #sns {
+  	position:fixed;
+  	right:0;
+  	top:0;
+  	width:30%;
+
+  	span {
+  		font-size:2em;
+
+  	}
+  } 
 
 }

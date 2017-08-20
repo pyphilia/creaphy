@@ -44,7 +44,9 @@
 
 				<div id="sns">
 					<span><a target="_blank" href="https://www.facebook.com/creaphy?ref=hl"><i class="fa fa-facebook-square" aria-hidden="true"></i></a></span>
-					<span><a target="_blank" href="http://cyberoppa.tumblr.com/"><i class="fa fa-tumblr-square" aria-hidden="true"></i></a></span>
+					<span onclick="tumblrPrevent(this)"><!-- <a target="_blank" href="http://cyberoppa.tumblr.com/"> -->
+						<i class="fa fa-tumblr-square" aria-hidden="true"></i><!-- </a> -->
+					</span>
 
 					<span id="arrowLeft"><i class="fa fa-chevron-left" aria-hidden="true"></i></span>
 					<span id="arrowRight"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>

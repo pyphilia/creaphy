@@ -139,6 +139,8 @@ class Db {
 			if(isset($conditions)) {
 				$length = count($conditions);
 				foreach ($conditions as $key => $value) {
+
+					// check whether there is a AND or OR to process @TODO MAKE BETTER
 					$innerLength = count($value);
 					if($innerLength > 1) {
 
@@ -152,7 +154,9 @@ class Db {
 							--$length;
 						}
 					}
+
 					else {
+						/*var_dump($value);*/
 						$query .= (strcmp($value[0],"IS NOT NULL")==0) ? "$key IS NOT NULL " : "$key=" . '"' . "$value[0]" . '" ';
 
 						if(--$length) { // if is not last iteration

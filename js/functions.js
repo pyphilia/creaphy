@@ -6,7 +6,7 @@ function getCorrespondingWidth() {
 	var factor = 1;
 
 	if(windowWidth < 871) {
-		factor = 1/1.1;
+		factor = 1/1.3;
 	}
 	else if(windowWidth < 1400) {
 		factor = 1/2;

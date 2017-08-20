@@ -1,28 +1,48 @@
 <?php 
 
-require("token.php");
-
 require("Db.php");
 $db = new Db($dbhost, $dbuser, $dbpw, $dbname); 
 
 require("Imgur.php");
 $imgur = new Imgur($imgur_client_id);
 
-require("functions.php");
+
+
+
+// get category from get
+$currentCategory = (isset($_GET["category"]) && isCategory($_GET["category"])) 
+? isCategory(htmlspecialchars($_GET["category"])) 
+: $CATEGORIES["Avatars"];
+
+$tags = array();
+if(isset($_GET['search'])) {
+	$tags = $_GET['search'];
+}
+
 
 ?>
 
 <section id="gallery">
+
+	<?php 
+	echo '<h2 id="graph_title">';
+	echo $currentCategory["name"] . " : ";
+	$size = count($tags);
+	foreach ($tags as $value) {
+		echo $value;
+		if ($tags[$size-1] != $value) {
+			echo ", ";
+		}
+	}
+	echo '</h2>';
+	?>
+
 	<div class="list">
 
 		<?php 
 			// use the cookie to get the search information
-		$search = '';
-		if(isset($_GET['search'])) {
-			$search = $_GET['search'];
-		}
 
-		printFromName($search, $db, $imgur);
+		printCreationsByCategoriesAndTag($tags, $db, $imgur);
 
 		?>
 
@@ -75,12 +95,12 @@ require("functions.php");
 
 			$selected = $('.chosen-container').find('.search-choice span');
 
-			$search = "?";
+			$search = "";
 			$selected.each(function(){
 				$search += "search[]=" + ($(this).html()) + "&";
 			});
 
-			window.location.href = "graphism.php" + $search;
+			window.location.href = "graphism.php?category=" + <?php printCurrentCategory(); ?> + "&" + $search;
 
 		});
 
@@ -92,7 +112,9 @@ require("functions.php");
 <?php 
 
 // get images from get values 
-function printFromName($search, $db, $imgur) {
+function printCreationsByCategoriesAndTag($search, $db, $imgur) {
+
+	global $currentCategory;
 
 	// if there is sth
 	/*DB*/ 
@@ -100,55 +122,57 @@ function printFromName($search, $db, $imgur) {
 	$limit = 45;
 	$images;
 
-			// category process
-	if($category = isCategory($search[0])){
-		$cat_id = $category["id"];
-		$cat_imgur_id = $category["imgur_album_id"];
+	// category process
+	if($currentCategory){
 
-		$db_images = $db->select("creations", array("url"), array("categories_id" => array($cat_id)), "last_modified DESC")->fetchAll();
-		$images = array_column($db_images, "url");
+		$cat_id = $currentCategory["id"];
+		$cat_imgur_id = $currentCategory["imgur_album_id"];
+		$conditions = array("categories_id" => array($cat_id));
+		$imgur_content;
 
-	}
+		// search process
+		if(isset($search) && $search != "" && count($search)){
+			array_walk($search, "htmlspecialchars");
+			if(isCelebrityDepending($cat_id)) {
+				$conditions["celebrities.name"] = $search;
+			}
+			else {
+				$conditions["creations.title"] = $search;
+			}
 
-	else if(isset($search) && $search != ""){ 
-
-		// create the conditions
-		$names = array();
-		foreach ($search as $key => $value) {
-
-
-			$search = htmlspecialchars($value);
-			/*$search = preg_replace('/%C3%A9/', 'é', $search);
-			$search = preg_replace('/%E2%98%85/', '★', $search);*/
-			/*$search = preg_split("/[,]+/", $search);*/
-			array_push($names, $search);
+			/* IMGUR */
+			$imgur_content = $imgur->getImagesFromAlbumWithTags($cat_imgur_id, $search);
+		}
+		else {
+			/* IMGUR */
+			$imgur_content = array_slice($imgur->getImagesFromAlbum($cat_imgur_id)["data"], 0, 45);
 		}
 
-		/*$names = (count($names) == 1) ? $names[0] : $names; */
-		$cond = array("celebrities.name" => $names);
-		/*var_dump($cond);*/
+		/*DB*/
+		$limit = (isCelebrityDepending($cat_id) && (!isset($conditions["celebrities.name"]))) ? 45 - count($imgur_content) : NULL;
 
-
-		$db_creations = $db->leftJoin("creations", "celebrities", ["celebrities_id" => "id"], array("creations.url"), $cond, "last_modified DESC", $limit)->fetchAll();
-		$db_images = array_column($db_creations, "url");
+		$db_images = array();
+		if(!isset($limit) || $limit > 0) {
+			$db_creations = $db->leftJoin("creations", "celebrities", array("celebrities_id" => "id"), array("creations.url"), $conditions, "last_modified DESC", $limit)->fetchAll();
+			$db_images = array_column($db_creations, "url");
+			/*var_dump($db_creations);*/
+		}
 
 		/*IMGUR*/
-		$imgur_content = $imgur->getImagesFromAlbumWithTags("R3nHG", $names);
 		$imgur_images = array_reverse(array_column($imgur_content, "link")); // reverse to have most recent one first
 
+		/*all images*/ 
 		$images = array_merge($imgur_images, $db_images);
-
 	}
 	else {
-
-		$db_images = $db->leftJoin("creations", "celebrities", ["celebrities_id" => "id"], array("creations.url"), $cond, "last_modified DESC", $limit)->fetchAll();
-		$images = array_column($db_images, "url");
+		var_dump("ERROR");
 	}
 	// echo
 	$string = '';
 	echo '<div id="gallery_lightbox">';
 	foreach($images as $crea) {
 		echo '<a href="' .  $crea .  '"><img src="' .  $crea .  '"/></a>';
+		
 	}
 	echo '</div>';
 }
@@ -160,20 +184,37 @@ function printFromName($search, $db, $imgur) {
 
 function getAllNames($db, $imgur){
 
-	$db_creations = array_column($db->select("creations", array("distinct title"), array("title" => "IS NOT NULL"))->fetchAll(),"title");
-	$db_celebrities = array_column($db->select("celebrities", array("name"))->fetchAll(), "name");
+	global $currentCategory;
+
+	$cat_id = $currentCategory["id"];
+	$cat_imgur_id = $currentCategory["imgur_album_id"];
+	$db_creations;
+
+	if(isCelebrityDepending($cat_id)) {
+
+		$db_creations = array_column($db->leftJoin("creations", "celebrities", array("celebrities_id" => "id"), array("celebrities.name"), array("categories_id" => array($cat_id)), "last_modified DESC")->fetchAll(),"name");
+		/*$db_creations = array_column($db->select("celebrities", array("name"))->fetchAll(),"name");*/
+	}
+	else {
+		$db_creations = array_column($db->select("creations", array("distinct title"), 
+			array("title" => array("IS NOT NULL"), "categories_id" => array($cat_id))
+			)->fetchAll(),"title");
+	}
+	//$db_celebrities = array_column($db->select("celebrities", array("name"))->fetchAll(), "name");
 
 	// get imgur names
-	$imgur_content = $imgur->getImagesFromAlbum("R3nHG");
+	$imgur_content = $imgur->getImagesFromAlbum($cat_imgur_id);
 	$imgur_names = array_column($imgur_content["data"], "description");
 
+	/*var_dump($db_creations);*/
+
 	// mix all together and keep unique ones
-	global $CATEGORIES;
-	$categories = array_keys($CATEGORIES);
-	$allNames = array_merge($db_celebrities, array_merge($db_creations, array_merge($imgur_names, $categories)));
+	//$allNames = array_merge($db_celebrities, array_merge($db_creations, $imgur_names));
+	$allNames = array_merge($db_creations, $imgur_names);
 	$names = array_unique($allNames);
 	natcasesort($names);
 	array_shift($names);
+
 
 	$html = "";
 	foreach ($names as $name) {
@@ -183,5 +224,11 @@ function getAllNames($db, $imgur){
 	return $html;
 }
 
+function printCurrentCategory(){
+
+	global $currentCategory;
+	echo "'" . $currentCategory["name"] . "'"; 
+
+}
 
 ?>

@@ -1,0 +1,22 @@
+{
+  "name": "creaphy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "js/index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pyphilia/creaphy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pyphilia/creaphy/issues"
+  },
+  "homepage": "https://github.com/pyphilia/creaphy#readme",
+  "dependencies": {
+    "lightgallery.js": "^1.0.1"
+  }
+}

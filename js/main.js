@@ -1,3 +1,12 @@
+function tumblrPrevent(element){
+	var properties = element.getBoundingClientRect();
+	var top = properties.width + properties.top;
+	var left = properties.left - 30; 
+	d3.select("#sns").append("div")
+	.attr("style","font-size:2em;font-family: 'Arizonia';position:fixed; left:" + left + "px;top:" + top + "px")
+	.html("Coming soon!");
+}
+
 $(document).ready(function() {
 
 	// apply init position
@@ -7,9 +16,13 @@ $(document).ready(function() {
 	var projectWidth = getCorrespondingWidth();
 	var projectMargin = $(".project").css("marginLeft").replace(/[a-z]/g, '') * 2;
 	var marginLeft = (window.innerWidth - projectWidth - projectMargin)/2;
+
+	/*console.log(projectWidth + " > " + projectMargin + " > " + marginLeft );*/
+
 	$(".project").css("width",projectWidth);
 	$(".project_wrapper").css("margin-left",marginLeft);
 	$("#blank").css("height", getCorrespondingHeight() + "px");
+
 
 	var MAXSLIDE = data.length + 1; 
 	var widthProjectElement = projectWidth + projectMargin; 

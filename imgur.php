@@ -46,6 +46,7 @@ class Imgur {
 	}
 
 	public function sortByTags($data, $tags){
+		
 		$res = [];
 		foreach ($data as $key => $value) {
 			foreach ($tags as $tag) {
