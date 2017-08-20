@@ -26,7 +26,7 @@ function getCorrespondingHeight(){
 		factor = 0;
 	}
 	else {
-		factor = 1/10;
+		factor = 1/16;
 	}
 
 	return window.innerWidth * factor;
