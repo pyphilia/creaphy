@@ -8,8 +8,7 @@ $imgur = new Imgur($imgur_client_id);
 
 
 
-
-// get category from get
+// get category and tags from get
 $currentCategory = (isset($_GET["category"]) && isCategory($_GET["category"])) 
 ? isCategory(htmlspecialchars($_GET["category"])) 
 : $CATEGORIES["Avatars"];
@@ -133,6 +132,7 @@ function printCreationsByCategoriesAndTag($search, $db, $imgur) {
 		// search process
 		if(isset($search) && $search != "" && count($search)){
 			array_walk($search, "htmlspecialchars");
+
 			if(isCelebrityDepending($cat_id)) {
 				$conditions["celebrities.name"] = $search;
 			}
@@ -171,7 +171,7 @@ function printCreationsByCategoriesAndTag($search, $db, $imgur) {
 	$string = '';
 	echo '<div id="gallery_lightbox">';
 	foreach($images as $crea) {
-		echo '<a href="' .  $crea .  '"><img src="' .  $crea .  '"/></a>';
+		echo '<a href="' .  $crea .  '"><img alt="creation" src="' .  $crea .  '"/></a>';
 		
 	}
 	echo '</div>';
@@ -190,17 +190,18 @@ function getAllNames($db, $imgur){
 	$cat_imgur_id = $currentCategory["imgur_album_id"];
 	$db_creations;
 
+	// if the category is depending on the celebrity -> display only celebrities
 	if(isCelebrityDepending($cat_id)) {
 
 		$db_creations = array_column($db->leftJoin("creations", "celebrities", array("celebrities_id" => "id"), array("celebrities.name"), array("categories_id" => array($cat_id)), "last_modified DESC")->fetchAll(),"name");
 		/*$db_creations = array_column($db->select("celebrities", array("name"))->fetchAll(),"name");*/
 	}
+	// display names depending on title
 	else {
 		$db_creations = array_column($db->select("creations", array("distinct title"), 
 			array("title" => array("IS NOT NULL"), "categories_id" => array($cat_id))
 			)->fetchAll(),"title");
 	}
-	//$db_celebrities = array_column($db->select("celebrities", array("name"))->fetchAll(), "name");
 
 	// get imgur names
 	$imgur_content = $imgur->getImagesFromAlbum($cat_imgur_id);

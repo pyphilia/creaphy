@@ -18,9 +18,10 @@ class Imgur {
 
 	public function getImagesFromAlbumWithTags($albumId, $tags){
 
-		$pms = $this->getImagesFromAlbum($albumId);
-		$sorted = $this->sortByTags($pms['data'], $tags);
-		return $sorted;
+		/*$pms = $this->getImagesFromAlbum($albumId);*/
+		return array();
+		/*$sorted = $this->sortByTags($pms['data'], $tags);
+		return $sorted;*/
 		/*var_dump($sorted);*/
 
 

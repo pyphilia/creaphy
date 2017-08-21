@@ -6,7 +6,6 @@ include("head.php");
 require("token.php");
 include("functions.php");
  ?>
-<link rel="stylesheet" type="text/css" href="lib/chosen-1.4.2/chosen.css">
 <body>
 	<script src="js/jquery-3.1.1.min.js"></script>
 	<script type="text/javascript" src="lib/chosen-1.4.2/chosen.jquery.min.js"></script>
@@ -19,7 +18,9 @@ include("functions.php");
 			<?php 
 			include("header.php");
 			include("navigation.php");  ?>
-
+			<nav><ul><li>
+			<a style="color:red" href="http://essay.forumgratuit.ch" id="code_link">Code</a>
+			</li></ul></nav>
 		<!-- 	<div id="sublinks">
 				<span>Avatars &amp; icons</span>
 				<span>Avatars &amp; icons</span>

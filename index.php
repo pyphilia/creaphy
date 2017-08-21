@@ -27,8 +27,8 @@
 					<div class="project" data-num="0">
 						<div id="flareon_img" style="background-image: url(http://rs596.pbsrc.com/albums/tt46/Arashi_The_Glaceon/HGSS-Overworld-Flareon-Runn.gif~c200)"></div>
 						<h2>pyphi(lia)</h2>
-						<p>
-							graphist, developer and programmer<br/>Computer Science Master student<br/>Switzerland<br/>
+						<p id="perso_desc">
+							
 						</p>
 						<a href="mailto:pyphilia@gmail.com">pyphilia@gmail.com</a>
 						<!-- <div class="lightgallery">
