@@ -14,9 +14,6 @@
 <a href="http://la-boite-a-avatars.tumblr.com/">
 	<img alt="partenariat logo" class="part" src="http://i.imgur.com/cfQ3qgz.png" />
 </a>
-<a href="http://shi-jima.tumblr.com/">
-	<img alt="partenariat logo" class="part" src="http://img15.hostingpics.net/pics/168240shinjima.png" />
-</a>
 <a href="http://aiwiy.weebly.com">
 	<img alt="partenariat logo" class="part" src="http://aiwiy.weebly.com/uploads/5/6/3/3/56338295/logo5_orig.png" />
 </a>

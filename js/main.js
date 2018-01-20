@@ -10,6 +10,8 @@ function tumblrPrevent(element){
 	.html("Coming soon!");
 }
 
+//alert(window.innerWidth + "/" + window.innerHeight);
+
 $(document).ready(function() {
 
 	// apply init position
@@ -20,7 +22,6 @@ $(document).ready(function() {
 	var projectMargin = $(".project").css("marginLeft").replace(/[a-z]/g, '') * 2;
 	var marginLeft = (window.innerWidth - projectWidth - projectMargin)/2;
 
-	/*console.log(projectWidth + " > " + projectMargin + " > " + marginLeft );*/
 
 	$(".project").css("width",projectWidth);
 	$(".project_wrapper").css("margin-left",marginLeft);
@@ -89,7 +90,7 @@ function displayProjects(myData){
 		var desc = wrapper.append("div").attr("class","project ").attr("data-num",i+1);
 		/*.attr("style","border:3px solid " + d.color + "; border-width: 3px 0;");*/
 		desc.append("h2").text(d.title);
-		desc.append("div").attr("class","desc").text(function(e){
+		desc.append("div").attr("class","desc").html(function(e){
 			if(language=="fr") {
 				return d.desc.fr;
 			}

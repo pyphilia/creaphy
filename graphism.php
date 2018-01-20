@@ -6,6 +6,7 @@ include("head.php");
 require("token.php");
 include("functions.php");
  ?>
+	<link rel="stylesheet" href="css/build/css/desktop_styles.css">
 <body>
 	<script src="js/jquery-3.1.1.min.js"></script>
 	<script type="text/javascript" src="lib/chosen-1.4.2/chosen.jquery.min.js"></script>

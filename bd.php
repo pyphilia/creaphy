@@ -1,26 +1,22 @@
 ﻿<?php
 try {
-	$con = new PDO('mysql:host=fdb7.royalwebhosting.net;dbname=2120706_creaphy', '2120706_creaphy', 'rVive_pyro1');
-	//$con = new PDO('mysql:host=localhost;dbname=cv9', 'root', '');
+//	$con = new PDO('mysql:host=fdb7.royalwebhosting.net;dbname=2120706_creaphy', '2120706_creaphy', 'rVive_pyro1');
+	$con = new PDO('mysql:host=localhost;dbname=cv9', 'root', '');
 	//$con1 = new PDO('mysql:host=localhost;dbname=creaphy', 'root', '');
 } catch (PDOException $e) {
 	print "Error!: " . $e->getMessage() . "<br/>";
 	die();
 }
 
+define('SITE_URL', 'http://localhost/creaphy/');
+//define('SITE_URL', 'http://creaphy.royalwebhosting.net/');
 
 
 // DEFINE CATEGORIES ID
 
 $CODE_REQUIRED = "pyphilia1997";
-$CATEGORIES = array();
-foreach($con->query('SELECT * FROM categories') as $cat){
-	define(strtoupper($cat['name'] . '_ID'), $cat['id']);
-	$CATEGORIES[$cat['id']] = $cat['name'];
-}
 
-//define('SITE_URL', 'http://localhost/creaphy/');
-define('SITE_URL', 'http://creaphy.royalwebhosting.net/');
+
 
 
 function getPageUrl($id){

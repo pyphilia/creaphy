@@ -1,0 +1,217 @@
+@mixin transition ($seconds: 1s, $elements: all){
+	-moz-transition:$seconds $elements;
+	-webkit-transition:$seconds $elements;
+	-o-transition:$seconds $elements;
+	transition:$seconds $elements;
+}
+
+@mixin boxContentStyles(){
+	background: $contentBackground;
+	font-size: 1.1em;
+	box-sizing:border-box;
+	border-radius: 5px;
+	padding:20px 40px;
+}
+
+@mixin buttonStyle(){
+	padding:5px 10px;
+	background:$highColor;
+	color: white;
+	text-transform: uppercase;
+	border:none;
+}
+
+@mixin scrollbar($width){
+	&::-webkit-scrollbar {
+		width: $width;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: #eeeeee;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: $highColor;
+	}
+}
+
+$linkColor: black;
+$highColor: #1e6e83;
+$textColor : #444;
+$contentBackground : white;
+
+
+* {
+	margin:0;
+	padding:0;
+}
+
+body {
+	font-family: arial;
+	font-size: 24px;
+	background:#000;
+	background-image:url("../../../img/background.png");
+	line-height:1.6em;
+	width:100%;
+}
+
+a, a:active, a:hover {
+	text-decoration:none !important;
+	color:$highColor;
+}
+
+h1 {
+	text-align: center;
+	font-size: 6.5em;
+	height:40px;
+
+
+	.highlight {
+		color:$highColor;
+	}
+}
+
+h2 {
+	margin:0;
+	padding:0;
+	text-transform: capitalize;
+	color:$highColor;
+	font-size: 2.3em;
+/* 
+	#graph_title {
+	font-family: 'Arizonia';
+		font-weight: bold;
+		} */
+	}
+
+	input {
+		@include buttonStyle();
+	}
+
+
+
+	footer {
+		font-size:1.2em;
+		text-align: center;
+		width:100%;
+		background:white;
+	}
+
+
+
+	.lightgallery {
+
+		img {
+			margin:2px;
+			height:105px;
+			width:105px;
+			object-fit: cover;
+			opacity: 0.7;
+		}
+	}
+
+
+	nav {
+		text-align:center;
+
+		ul li {
+			list-style:none;
+			display: inline-block;
+			margin: 70px 2% 25px;
+
+			a  {
+				color: $linkColor;
+				font-size: 2.8em;
+				text-transform: lowercase;
+				font-family: 'Arizonia';
+			}
+
+			span.sublinks {
+				display: block;
+				margin-left:4%;
+
+				a {
+					font-size: 1.7em;
+				}
+			}
+		}
+	}
+
+
+
+	.project {
+		margin:20px 40px;
+		@include boxContentStyles();
+		@include transition();
+
+		#flareon_img {
+			background-position: center center;
+			width:100px;
+			height:100px;
+			max-height:15%;
+			margin: 10px 20px 10px 0; 
+			float:left;
+		}
+
+		.desc {
+			font-size: 1.5em;
+			margin: 2% 0;
+			color: $textColor;
+			text-align: justify;
+
+			@include scrollbar(0.5em);
+		}
+
+		a,p,h2,.desc,img {
+
+			@include transition();
+		}
+
+
+		&.blurred {
+			text-shadow: lightgrey 0 0 7px;
+			box-shadow: 0 0 10px white;
+			opacity: 0.8;
+
+			a,p,h2, .desc {
+
+				color: transparent;
+			}
+
+			img {
+				opacity:0.1;
+			}
+		}
+
+		h2 {
+			text-transform: lowercase;
+			letter-spacing: -1px;
+
+			&:first-letter {
+/* 
+			font-family: 'Arizonia';
+			font-size: 2em;
+			margin-top: 2em; */
+		}
+	}
+}
+
+
+#sns {
+	text-align: center;
+	margin: 70px 0 50px;
+
+	span {
+		font-size: 4.1em;
+		margin: 0 1%;
+		color: $highColor;
+	}
+
+	#arrowLeft, #arrowRight {
+		color: black;
+
+		&:hover {
+			cursor: pointer;	
+		}
+	}
+}

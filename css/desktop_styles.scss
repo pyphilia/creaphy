@@ -1,0 +1,175 @@
+@mixin transition ($seconds: 1s, $elements: all){
+	-moz-transition:$seconds $elements;
+	-webkit-transition:$seconds $elements;
+	-o-transition:$seconds $elements;
+	transition:$seconds $elements;
+}
+
+@mixin boxContentStyles(){
+	background: $contentBackground;
+	font-size: 1.1em;
+	box-sizing:border-box;
+	border-radius: 5px;
+	padding:20px 40px;
+}
+
+@mixin buttonStyle(){
+	padding:5px 10px;
+	background:$highColor;
+	color: white;
+	text-transform: uppercase;
+	border:none;
+}
+
+@mixin scrollbar($width){
+	&::-webkit-scrollbar {
+		width: $width;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: #eeeeee;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: $highColor;
+	}
+}
+
+
+$linkColor: black;
+$highColor: #1e6e83;
+$textColor : #444;
+$contentBackground : white;
+
+nav {
+
+	text-align:center;
+
+	ul li {
+		list-style:none;
+		display: inline-block;
+		margin: 5px 2%;
+
+		a  {
+			color: $linkColor;
+			font-size: 2.8em;
+			text-transform: lowercase;
+			font-family: 'Arizonia';
+		}
+
+		span.sublinks {
+			display: block;
+			margin-left:4%;
+
+			a {
+				font-size: 1.7em;
+			}
+		}
+	}
+}
+
+
+
+.project {
+	margin:0 10px;
+	@include boxContentStyles();
+	@include transition();
+
+	#flareon_img {
+		background-position: center center;
+		width:100px;
+		height:100px;
+		max-height:15%;
+		margin: 10px 20px 10px 0; 
+		float:left;
+	}
+
+	.desc {
+		max-height: 230px;
+		overflow: auto;
+		margin: 2% 0;
+		color: $textColor;
+		text-align: justify;
+
+		@include scrollbar(0.5em);
+	}
+
+	a,p,h2,.desc,img {
+
+		@include transition();
+	}
+
+
+	&.blurred {
+		text-shadow: lightgrey 0 0 7px;
+		box-shadow: 0 0 10px white;
+		opacity: 0.8;
+
+		a,p,h2, .desc {
+
+			color: transparent;
+		}
+
+		img {
+			opacity:0.1;
+		}
+	}
+
+	h2 {
+		text-transform: lowercase;
+		letter-spacing: -1px;
+
+		&:first-letter {
+/* 
+			font-family: 'Arizonia';
+			font-size: 2em;
+			margin-top: 2em; */
+		}
+	}
+}
+
+
+#sns {
+	text-align: center;
+
+	span {
+		font-size: 4.3em;
+		margin: 0 1%;
+		color: $highColor;
+	}
+
+	#arrowLeft, #arrowRight {
+		color: black;
+
+		&:hover {
+			cursor: pointer;	
+		}
+	}
+}
+
+
+@media (max-width: 600px), (max-height: 600px){
+
+	h1 {
+
+		font-size: 4em;
+	}
+
+	.partners_content, .project {
+		padding: 10px 2%;
+	}
+
+	#sns {
+		position:fixed;
+		right:10px;
+		top:5px;
+		width:10%;
+		text-align: right;
+
+		span {
+			font-size:2em;
+
+		}
+	} 
+
+}

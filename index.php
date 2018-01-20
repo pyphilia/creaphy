@@ -1,17 +1,10 @@
 <!DOCTYPE html>
 <html>
 <?php include("head.php"); ?>
-
+	<link rel="stylesheet" href="css/build/css/desktop_styles.css">
 <body>
-	<script src="js/jquery-3.1.1.min.js"></script>
-	<script src="lib/bootstrap/js/bootstrap.js"></script>
-	<script type="text/javascript" src="node_modules\lightgallery.js\dist\js\lightgallery.js"></script>
-	<script type="text/javascript" src="lib/d3/d3.js"></script>
-	<script type="text/javascript" src="js/functions.js"></script>
-	<script type="text/javascript" src="js/projectData.js"></script>
-	<script type="text/javascript" src="js/main.js"></script>
 
-<div id="blank"></div>
+	<div id="blank"></div>
 
 	<div id="project_content_table">
 		<div id="project_content_tablecell">
@@ -44,8 +37,8 @@
 
 				<div id="sns">
 					<span><a target="_blank" href="https://www.facebook.com/creaphy?ref=hl"><i class="fa fa-facebook-square" aria-hidden="true"></i></a></span>
-					<span onclick="tumblrPrevent(this)"><!-- <a target="_blank" href="http://cyberoppa.tumblr.com/"> -->
-						<i class="fa fa-tumblr-square" aria-hidden="true"></i><!-- </a> -->
+					<span><a target="_blank" href="http://k-reators.tumblr.com">
+						<i class="fa fa-tumblr-square" aria-hidden="true"></i></a>
 					</span>
 
 					<span id="arrowLeft"><i class="fa fa-chevron-left" aria-hidden="true"></i></span>
@@ -59,16 +52,32 @@
 		</div>
 	</div>
 
+
+	<script src="js/jquery-3.1.1.min.js"></script>
+	<script src="lib/bootstrap/js/bootstrap.js"></script>
+	<script type="text/javascript" src="node_modules\lightgallery.js\dist\js\lightgallery.js"></script>
+	<script type="text/javascript" src="lib/d3/d3.js"></script>
+	<script type="text/javascript" src="js/functions.js"></script>
+	<script type="text/javascript" src="js/projectData.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+
 	<script>
+		// mobile redirection
+		if(mobileCheck()) {
+			window.location = "mobile_index.php";
+		}
+
 		// set lightboxes 
-		var lightboxes = document.getElementsByClassName('lightgallery');
-		[].forEach.call(lightboxes, function(e){
-			lightGallery(e);
+		$(document).ready(function(){
+			var lightboxes = document.getElementsByClassName('lightgallery');
+			[].forEach.call(lightboxes, function(e){
+				lightGallery(e);
+			});
 		});
 
 	</script>
 
-<?php include("footer.php"); ?>
+	<?php include("footer.php"); ?>
 </body>
 
 </html> 

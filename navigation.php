@@ -7,7 +7,7 @@
 		<a href="index.php">home</a>
 	</li>
     <li>
-    	<a href="graphism.php">Graphism</a>
+    	<a href="graphism.php">Creations</a>
     	<!-- <span class="sublinks">
     		<a href="">creations</a><br>
     		<a href="">Gimp Tutorials</a><br>

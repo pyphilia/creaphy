@@ -1,0 +1,134 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+body {
+  font-family: arial;
+  font-size: 24px;
+  background: #000;
+  background-image: url("../../../img/background.png");
+  line-height: 1.6em;
+  width: 100%; }
+
+a, a:active, a:hover {
+  text-decoration: none !important;
+  color: #1e6e83; }
+
+h1 {
+  text-align: center;
+  font-size: 6.5em;
+  height: 40px; }
+  h1 .highlight {
+    color: #1e6e83; }
+
+h2 {
+  margin: 0;
+  padding: 0;
+  text-transform: capitalize;
+  color: #1e6e83;
+  font-size: 2.3em;
+  /* 
+	#graph_title {
+	font-family: 'Arizonia';
+		font-weight: bold;
+		} */ }
+
+input {
+  padding: 5px 10px;
+  background: #1e6e83;
+  color: white;
+  text-transform: uppercase;
+  border: none; }
+
+footer {
+  font-size: 1.2em;
+  text-align: center;
+  width: 100%;
+  background: white; }
+
+.lightgallery img {
+  margin: 2px;
+  height: 105px;
+  width: 105px;
+  object-fit: cover;
+  opacity: 0.7; }
+
+nav {
+  text-align: center; }
+  nav ul li {
+    list-style: none;
+    display: inline-block;
+    margin: 70px 2% 25px; }
+    nav ul li a {
+      color: black;
+      font-size: 2.8em;
+      text-transform: lowercase;
+      font-family: 'Arizonia'; }
+    nav ul li span.sublinks {
+      display: block;
+      margin-left: 4%; }
+      nav ul li span.sublinks a {
+        font-size: 1.7em; }
+
+.project {
+  margin: 20px 40px;
+  background: white;
+  font-size: 1.1em;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 20px 40px;
+  -moz-transition: 1s all;
+  -webkit-transition: 1s all;
+  -o-transition: 1s all;
+  transition: 1s all; }
+  .project #flareon_img {
+    background-position: center center;
+    width: 100px;
+    height: 100px;
+    max-height: 15%;
+    margin: 10px 20px 10px 0;
+    float: left; }
+  .project .desc {
+    font-size: 1.5em;
+    margin: 2% 0;
+    color: #444;
+    text-align: justify; }
+    .project .desc::-webkit-scrollbar {
+      width: 0.5em; }
+    .project .desc::-webkit-scrollbar-track {
+      background: #eeeeee; }
+    .project .desc::-webkit-scrollbar-thumb {
+      background-color: #1e6e83; }
+  .project a, .project p, .project h2, .project .desc, .project img {
+    -moz-transition: 1s all;
+    -webkit-transition: 1s all;
+    -o-transition: 1s all;
+    transition: 1s all; }
+  .project.blurred {
+    text-shadow: lightgrey 0 0 7px;
+    box-shadow: 0 0 10px white;
+    opacity: 0.8; }
+    .project.blurred a, .project.blurred p, .project.blurred h2, .project.blurred .desc {
+      color: transparent; }
+    .project.blurred img {
+      opacity: 0.1; }
+  .project h2 {
+    text-transform: lowercase;
+    letter-spacing: -1px; }
+    .project h2:first-letter {
+      /* 
+			font-family: 'Arizonia';
+			font-size: 2em;
+			margin-top: 2em; */ }
+
+#sns {
+  text-align: center;
+  margin: 70px 0 50px; }
+  #sns span {
+    font-size: 4.1em;
+    margin: 0 1%;
+    color: #1e6e83; }
+  #sns #arrowLeft, #sns #arrowRight {
+    color: black; }
+    #sns #arrowLeft:hover, #sns #arrowRight:hover {
+      cursor: pointer; }
